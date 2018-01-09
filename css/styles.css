@@ -1,0 +1,264 @@
+/* ----- Base Styles ----- */
+
+* {
+  margin: 0;
+  padding: 0;
+/*  box-sizing: border-box;*/
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(to top, lightblue, white 25%, white 75%, lightblue);
+  min-height: 100vh;
+}
+
+
+/* ---- Header Styles ----- */
+
+#main-header {
+  width: 100%;
+  text-align: center;
+  padding: 50px 0 25px;
+}
+
+#mainSearch {
+  width: 200px;
+  padding: 5px;
+  font-size: 16px;
+  font-family: 'Raleway', sans-serif;
+  border: 2px solid grey;
+  border-radius: 5px;
+  box-shadow: 1px 2px 2px 1px rgba(0,0,0,0.5);
+}
+
+
+/* ----- Gallery Styles ----- */
+
+#gallery-content {
+  width: 325px;
+  margin: 0 auto;
+}
+
+.thumbnail {
+  width: 146px;
+  margin: 5px;
+  border: 2px solid grey;
+  border-radius: 3px;
+  box-shadow: 1px 2px 2px 1px rgba(0,0,0,0.7);
+}
+
+#imageList {
+  list-style: none;
+}
+
+#imageList li {
+  display: inline;
+}
+
+#imageList a {
+  display: inline-block;
+}
+
+.thumbnail:hover {
+  cursor: pointer;
+}
+
+
+/* ----- Footer Styles ----- */
+
+#main-footer {
+  width: 100%;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  padding: 20px 0 25px;
+  color: grey;
+}
+
+
+/* ----- My Light Box Styles ----- */
+
+.inactive {
+  display: none;
+}
+
+.title {
+  color: white;
+}
+
+#lightBox {
+  position: fixed;
+  background-color: rgba(0,0,0,0.9);
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#lightBox .container {
+  width: 100%;
+  margin: 0 auto;
+  height: 100vh;
+  text-align: center;
+}
+
+.imageContainer {
+  width: 325px;
+  margin: 0 auto;
+  padding-top: 50px;
+  position: relative;
+}
+
+.imageContainer img {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 3px;
+}
+
+.container li {
+  position: relative;
+}
+
+.prev {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 30%;
+  text-align: left;
+  height: 203px;
+  line-height: 203px;
+  cursor: pointer;
+}
+
+.next {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 30%;
+  text-align: right;
+  height: 203px;
+  line-height: 203px;
+  cursor: pointer;
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.arrow {
+  color: white;
+  font-size: 30px;
+  padding: 0 10px;
+}
+
+.next:hover {
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.8));
+}
+.prev:hover {
+  background: linear-gradient(270deg, transparent, rgba(0,0,0,0.8));
+}
+
+
+/* ----- Media Queries ----- */
+
+@media screen and (orientation: landscape) {
+  
+  @media (min-width: 600px) {
+    #gallery-content {
+      width: 600px;
+      text-align: center;
+    }
+    
+    .thumbnail {
+      margin: 10px;
+    }
+    
+    .imageContainer {
+      width: 400px;
+    }
+
+    .next {
+      height: 254px;
+      line-height: 254px;
+    }
+
+    .prev {
+      height: 254px;
+      line-height: 254px;
+    }
+    
+  }
+  
+  .title {
+    color: white;
+  }
+  
+}
+
+@media (min-width: 768px) {
+  
+  #gallery-content {
+    width: 600px;
+    text-align: center;
+  }
+  
+  .thumbnail {
+    margin: 10px;
+  }
+  
+  .imageContainer {
+    width: 500px;
+  }
+  
+  .next {
+    height: 316px;
+    line-height: 316px;
+  }
+  
+  .prev {
+    height: 316px;
+    line-height: 316px;
+  }
+  
+  .title {
+    font-size: 20px;
+  }
+  
+}
+
+@media (min-width: 1024px) {
+  
+  #gallery-content {
+    width: 800px;
+    text-align: center;
+  }
+  
+  .thumbnail {
+    margin: 15px;
+  }
+  
+  .imageContainer {
+    width: 768px;
+  }
+
+  .next {
+    height: 484px;
+    line-height: 484px;
+  }
+
+  .prev {
+    height: 484px;
+    line-height: 484px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+}
