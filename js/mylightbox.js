@@ -81,7 +81,6 @@ function changeImage(options) {
     
     image.setAttribute('src', nextImage);
     title.innerHTML = nextTitle;
-    console.log(nextTitle);
   })
 }
 
@@ -130,10 +129,6 @@ for (i = 0; i < thumbnails.length; i++) {
     imageContainer.appendChild(title).setAttribute('class', 'title'); // append title with css class
   });
 }
-
-window.addEventListener('keyup', (e) => {
-  console.log(e.keyCode);
-})
 
 next();
 prev();
