@@ -68,6 +68,7 @@ let imageTitle;
 //  })
 //}
 
+
 function changeImage(options) {
   options.button.addEventListener('click', () => {
     let i = imageSrc.indexOf(image.getAttribute('src'));
@@ -130,8 +131,6 @@ for (i = 0; i < thumbnails.length; i++) {
   });
 }
 
-
-
-//next();
-//prev();
-//close();
+next();
+prev();
+close();
