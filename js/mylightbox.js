@@ -130,6 +130,8 @@ for (i = 0; i < thumbnails.length; i++) {
   });
 }
 
-next();
-prev();
-close();
+
+
+//next();
+//prev();
+//close();
