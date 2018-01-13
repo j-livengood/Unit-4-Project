@@ -1,13 +1,14 @@
+const anchors = document.querySelectorAll('a');
 const lightBox = document.getElementById('lightBox');
 const thumbnails = document.querySelectorAll('#imageList li');
-const imageContainer = document.querySelector('.imageContainer')
+const imgContainer = document.querySelector('.imageContainer')
 const search = document.getElementById('mainSearch');
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 const closeButton = document.querySelector('.close');
 const title = document.createElement('p');
-const image = document.createElement('img');
-const imageSrc = [
+const img = document.createElement('img');
+const imgSrc = [
   "photos/01.jpg",
   "photos/02.jpg",
   "photos/03.jpg",
@@ -21,7 +22,7 @@ const imageSrc = [
   "photos/11.jpg",
   "photos/12.jpg"
 ]
-const caption = [
+const imgCaption = [
   "I love hay bales. Took this snap on a drive through the countryside past some straw fields.",
   "The lake was so calm today. We had a great view of the snow on the mountains from here.",
   "I hiked to the top of the mountain and got this picture of the canyon and trees below.",
@@ -35,102 +36,76 @@ const caption = [
   "I did a tour of a cave today and the view of the landscape below was breathtaking.",
   "I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in."
 ]
-let src;
-let newSrc;
-let imageTitle;
 
-//
-//function next() {
-//  nextButton.addEventListener('click', () => {
-//    let i = imageSrc.indexOf(image.getAttribute('src'));
-//    let nextImage = imageSrc[i + 1];
-//    
-//    if (i === imageSrc.length - 1) {
-//      nextImage = imageSrc[0];
-//    }
-//    
-//    image.setAttribute('src', nextImage);
-//    console.log(i);
-//  })
-//}
-//
-//function prev() {
-//  prevButton.addEventListener('click', () => {
-//    let i = imageSrc.indexOf(image.getAttribute('src'));
-//    let prevImage = imageSrc[i - 1];
-//    
-//    if (i === 0) {
-//      prevImage = imageSrc[11];
-//    }
-//    
-//    image.setAttribute('src', prevImage);
-//    console.log(i);
-//  })
-//}
+/*
+  for unobtrusive javascript --
+    1. disable all anchor tags to prevent naviagating away
+    2. show search bar if javascript is enable
+*/
+for (i = 0; i < anchors.length; i++){anchors[i].setAttribute('onclick', 'return false');}
+search.classList.toggle('inactive');
 
 
-function changeImage(options) {
-  options.button.addEventListener('click', () => {
-    let i = imageSrc.indexOf(image.getAttribute('src'));
-    let nextImage = imageSrc[options.directionCB(i)];
-    let nextTitle = caption[options.directionCB(i)];
-    
-    if (i === options.border) {
-      nextImage = imageSrc[options.borderChangeover];
-      nextTitle = caption[options.borderChangeover];
-    }
-    
-    image.setAttribute('src', nextImage);
-    title.innerHTML = nextTitle;
-  })
+nextButton.addEventListener('click', next, false);
+prevButton.addEventListener('click', prev, false);
+closeButton.addEventListener('click', close, false);
+
+function close() { // hide light box
+  lightBox.classList.toggle('inactive');
 }
 
 function next() {
-  const changeImageOptions = {
-    button: nextButton,
-    border: imageSrc.length - 1,
-    directionCB: (n) => n + 1,
-    borderChangeover: 0
+  let i = imgSrc.indexOf(img.getAttribute('src')); // find index of current image
+  let nextImage = imgSrc[i + 1]; // capture next src in list
+  let nextTitle = imgCaption[i + 1]; // capture next caption in list
+  if (i === imgSrc.length - 1) { // reset to beginning
+    nextImage = imgSrc[0];
+    nextTitle = imgCaption[0];
   }
-  changeImage(changeImageOptions);
+  img.setAttribute('src', nextImage); // set image src to next
+  title.innerHTML = nextTitle; // set image caption to next
 }
 
 function prev() {
-    const changeImageOptions = {
-    button: prevButton,
-    border: 0,
-    directionCB: (n) => n - 1,
-    borderChangeover: imageSrc.length - 1
+  let i = imgSrc.indexOf(img.getAttribute('src'));
+  let prevImage = imgSrc[i - 1];
+  let prevTitle = imgCaption[i - 1];
+  if (i === 0) {
+    prevImage = imgSrc[11];
+    prevTitle = imgCaption[11];
   }
-  changeImage(changeImageOptions);
+  img.setAttribute('src', prevImage);
+  title.innerHTML = prevTitle;
 }
 
-function close() {
-  closeButton.addEventListener('click', () => {
-    lightBox.classList.toggle('inactive');
-  })
-  window.addEventListener('keyup', (e) => {
-    if (e.keyCode === 27) {
-      lightBox.classList.toggle('inactive');
-    }
-  })
-}
+document.addEventListener('keyup', (e) => {
+  let keyName = e.key;
+  switch (keyName) {
+    case 'Escape':
+      close();
+      break;
+    case 'ArrowRight':
+      next();
+      break;
+    case 'ArrowLeft':
+      prev();
+      break;
+    default:
+      return;
+  }
+  e.preventDefault();
+}, true)
 
 for (i = 0; i < thumbnails.length; i++) {
   let iThumb = thumbnails[i];
   thumbnails[i].addEventListener('click', (e) => {
-    index = e.target.parentElement;
+    let src = e.target.getAttribute('src'); // capture src attr of thumbnail
+    let newSrc = src.replace('thumbnails/', '') // change src attr to full size image
+    let imageTitle = iThumb.children[0].getAttribute('data-title'); // capture title attr
+    
     lightBox.classList.toggle('inactive'); // show light box
-    src = e.target.getAttribute('src'); // capture src attr of thumbnail
-    newSrc = src.replace('thumbnails/', '') // change src attr to full size image
-    imageTitle = iThumb.children[0].getAttribute('title'); // capture title attr
     title.innerHTML = imageTitle; // set title text
-    imageContainer.appendChild(image).setAttribute('src', newSrc); // append image
-    image.classList.toggle('lightBoxImage');
-    imageContainer.appendChild(title).setAttribute('class', 'title'); // append title with css class
+    imgContainer.appendChild(img).setAttribute('src', newSrc); // append image
+    imgContainer.appendChild(title).setAttribute('class', 'title'); // append title with css class
   });
 }
-
-next();
-prev();
-close();

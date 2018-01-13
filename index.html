@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Jorams Treehouse Unit 4 Project | Searchable Image Gallery and Light Box</title>
   <link rel="stylesheet" href="css/normalize.css">
 <!--  <link rel="stylesheet" href="dist/css/lightbox.min.css">-->
@@ -11,7 +11,7 @@
   
 <body>
   <header id="main-header">
-    <input id="mainSearch" type="search" name="gallery-search" placeholder="Search for an image...">
+    <input id="mainSearch" class="inactive" type="search" name="gallery-search" placeholder="Search for an image...">
   </header>
   
   <div id="gallery-content">
@@ -93,9 +93,9 @@
   <div id="lightBox" class="inactive">
     <div class="container">
       <div class="imageContainer">
-        <span class="close"><p class="arrow">&times;</p></span>
-        <span class="prev"><p class="arrow">&lt;</p></span>
-        <span class="next"><p class="arrow">&gt;</p></span>
+        <span class="close arrow">&times;</span>
+        <span class="prev arrow">&lt;</span>
+        <span class="next arrow">&gt;</span>
       </div>
     </div>
   </div>
@@ -106,7 +106,7 @@
     
   <script src="js/jquery-3.2.1.min.js"></script>
 <!--  <script src="dist/js/lightbox.min.js"></script>-->
-  <script src="dist/js/jquery.js"></script>
+  <script src="js/jquerysearch.js"></script>
   <script src="js/mylightbox.js"></script>
 </body>
 </html>

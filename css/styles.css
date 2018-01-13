@@ -157,6 +157,10 @@ body {
   padding: 0 10px;
 }
 
+
+
+/* ----- Pseudo Classes ----- */
+
 .next:hover {
   background: linear-gradient(90deg, transparent, rgba(0,0,0,0.8));
 }
