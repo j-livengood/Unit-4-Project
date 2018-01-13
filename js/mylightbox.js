@@ -40,7 +40,7 @@ const imgCaption = [
 /*
   for unobtrusive javascript --
     1. disable all anchor tags to prevent naviagating away
-    2. show search bar if javascript is enable
+    2. show search bar if javascript is enabled
 */
 for (i = 0; i < anchors.length; i++){anchors[i].setAttribute('onclick', 'return false');}
 search.classList.toggle('inactive');
