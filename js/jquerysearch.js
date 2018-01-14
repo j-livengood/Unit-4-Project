@@ -6,9 +6,9 @@ $search.keyup( function () {
     if ($search.val() === '') {
       $(this).fadeTo(250, 1);
     } else if ($title.indexOf($search.val().toLowerCase()) > -1) {
-      $(this).fadeTo(250, 1);
+      $(this).show(250);
     } else {
-      $(this).fadeTo(250, 0.1);
+      $(this).hide(250);
     };
   });
 });
