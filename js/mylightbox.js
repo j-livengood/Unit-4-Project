@@ -1,14 +1,14 @@
-const anchors = document.querySelectorAll('a');
-const lightBox = document.getElementById('lightBox');
-const thumbnails = document.querySelectorAll('#imageList li');
-const imgContainer = document.querySelector('.imageContainer')
-const search = document.getElementById('mainSearch');
-const prevButton = document.querySelector('.prev');
-const nextButton = document.querySelector('.next');
-const closeButton = document.querySelector('.close');
-const title = document.createElement('p');
-const img = document.createElement('img');
-const imgSrc = [
+var anchors = document.querySelectorAll('a');
+var lightBox = document.getElementById('lightBox');
+var thumbnails = document.querySelectorAll('#imageList li');
+var imgContainer = document.querySelector('.imageContainer')
+var search = document.getElementById('mainSearch');
+var prevButton = document.querySelector('.prev');
+var nextButton = document.querySelector('.next');
+var closeButton = document.querySelector('.close');
+var title = document.createElement('p');
+var img = document.createElement('img');
+var imgSrc = [
   "photos/01.jpg",
   "photos/02.jpg",
   "photos/03.jpg",
@@ -22,7 +22,7 @@ const imgSrc = [
   "photos/11.jpg",
   "photos/12.jpg"
 ]
-const imgCaption = [
+var imgCaption = [
   "I love hay bales. Took this snap on a drive through the countryside past some straw fields.",
   "The lake was so calm today. We had a great view of the snow on the mountains from here.",
   "I hiked to the top of the mountain and got this picture of the canyon and trees below.",
@@ -55,9 +55,9 @@ function close() { // hide light box
 }
 
 function next() {
-  let i = imgSrc.indexOf(img.getAttribute('src')); // find index of current image
-  let nextImage = imgSrc[i + 1]; // capture next src in list
-  let nextTitle = imgCaption[i + 1]; // capture next caption in list
+  var i = imgSrc.indexOf(img.getAttribute('src')); // find index of current image
+  var nextImage = imgSrc[i + 1]; // capture next src in list
+  var nextTitle = imgCaption[i + 1]; // capture next caption in list
   if (i === imgSrc.length - 1) { // reset to beginning
     nextImage = imgSrc[0];
     nextTitle = imgCaption[0];
@@ -67,9 +67,9 @@ function next() {
 }
 
 function prev() {
-  let i = imgSrc.indexOf(img.getAttribute('src'));
-  let prevImage = imgSrc[i - 1];
-  let prevTitle = imgCaption[i - 1];
+  var i = imgSrc.indexOf(img.getAttribute('src'));
+  var prevImage = imgSrc[i - 1];
+  var prevTitle = imgCaption[i - 1];
   if (i === 0) {
     prevImage = imgSrc[11];
     prevTitle = imgCaption[11];
@@ -78,8 +78,8 @@ function prev() {
   title.innerHTML = prevTitle;
 }
 
-document.addEventListener('keyup', (e) => {
-  let keyName = e.key;
+document.addEventListener('keyup', function(e) {
+  var keyName = e.key;
   switch (keyName) {
     case 'Escape':
       close();
@@ -97,11 +97,11 @@ document.addEventListener('keyup', (e) => {
 }, true)
 
 for (i = 0; i < thumbnails.length; i++) {
-  let iThumb = thumbnails[i];
+  var iThumb = thumbnails[i];
   thumbnails[i].addEventListener('click', (e) => {
-    let src = e.target.getAttribute('src'); // capture src attr of thumbnail
-    let newSrc = src.replace('thumbnails/', '') // change src attr to full size image
-    let imageTitle = iThumb.children[0].getAttribute('data-title'); // capture title attr
+    var src = e.target.getAttribute('src'); // capture src attr of thumbnail
+    var newSrc = src.replace('thumbnails/', '') // change src attr to full size image
+    var imageTitle = iThumb.children[0].getAttribute('data-title'); // capture title attr
     
     lightBox.classList.toggle('inactive'); // show light box
     title.innerHTML = imageTitle; // set title text
