@@ -46,13 +46,13 @@ for (var i = 0; i < anchors.length; i++){anchors[i].setAttribute('onclick', 'ret
 
 search.classList.toggle('inactive');
 
-
+var iThumb;
 
 // EVENT LISTENERS
 
 for (i = 0; i < thumbnails.length; i++) {
-  var iThumb = thumbnails[i];
-  thumbnails[i].addEventListener('click', openLightBox, true);
+  iThumb = thumbnails[i];
+  iThumb.addEventListener('click', openLightBox, false);
 }
 
 nextButton.addEventListener('click', next, false);
@@ -84,7 +84,7 @@ document.addEventListener('keyup', function(e) {
 function openLightBox(e) {
   var src = e.target.getAttribute('src'); // capture src attr of thumbnail
   var newSrc = src.replace('thumbnails/', ''); // change src attr to full size image
-  var imageTitle = iThumb.children[0].getAttribute('data-title'); // capture title attr
+  var imageTitle = e.target.getAttribute('title'); // capture title attr
 
   lightBox.classList.toggle('inactive'); // show light box
   title.innerHTML = imageTitle; // set title text
@@ -119,3 +119,5 @@ function prev() {
   img.setAttribute('src', prevImage);
   title.innerHTML = prevTitle;
 }
+
+
