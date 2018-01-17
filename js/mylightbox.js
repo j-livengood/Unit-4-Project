@@ -1,7 +1,7 @@
 var anchors = document.querySelectorAll('a');
 var lightBox = document.getElementById('lightBox');
 var thumbnails = document.querySelectorAll('#imageList li');
-var imgContainer = document.querySelector('.imageContainer')
+var imgContainer = document.querySelector('.imageContainer');
 var search = document.getElementById('mainSearch');
 var prevButton = document.querySelector('.prev');
 var nextButton = document.querySelector('.next');
@@ -21,7 +21,7 @@ var imgSrc = [
   "photos/10.jpg",
   "photos/11.jpg",
   "photos/12.jpg"
-]
+];
 var imgCaption = [
   "I love hay bales. Took this snap on a drive through the countryside past some straw fields.",
   "The lake was so calm today. We had a great view of the snow on the mountains from here.",
@@ -35,20 +35,53 @@ var imgCaption = [
   "Sunset at the coast! The sky turned a lovely shade of orange.",
   "I did a tour of a cave today and the view of the landscape below was breathtaking.",
   "I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in."
-]
+];
 
 /*
   for unobtrusive javascript --
     1. disable all anchor tags to prevent naviagating away
     2. show search bar if javascript is enabled
 */
-for (i = 0; i < anchors.length; i++){anchors[i].setAttribute('onclick', 'return false');}
+for (var i = 0; i < anchors.length; i++){anchors[i].setAttribute('onclick', 'return false');}
 search.classList.toggle('inactive');
 
+for (i = 0; i < thumbnails.length; i++) {
+  var iThumb = thumbnails[i];
+  thumbnails[i].addEventListener('click', openLightBox, true);
+}
 
 nextButton.addEventListener('click', next, false);
 prevButton.addEventListener('click', prev, false);
 closeButton.addEventListener('click', close, false);
+
+document.addEventListener('keyup', function(e) {
+  var keyName = e.key;
+  switch (keyName) {
+    case 'Escape':
+      close();
+      break;
+    case 'ArrowRight':
+      next();
+      break;
+    case 'ArrowLeft':
+      prev();
+      break;
+    default:
+      return;
+  }
+  e.preventDefault();
+}, true);
+
+function openLightBox(e) {
+  var src = e.target.getAttribute('src'); // capture src attr of thumbnail
+  var newSrc = src.replace('thumbnails/', ''); // change src attr to full size image
+  var imageTitle = iThumb.children[0].getAttribute('data-title'); // capture title attr
+
+  lightBox.classList.toggle('inactive'); // show light box
+  title.innerHTML = imageTitle; // set title text
+  imgContainer.appendChild(img).setAttribute('src', newSrc); // append image
+  imgContainer.appendChild(title).setAttribute('class', 'title'); // append title with css class
+}
 
 function close() { // hide light box
   lightBox.classList.toggle('inactive');
@@ -78,34 +111,4 @@ function prev() {
   title.innerHTML = prevTitle;
 }
 
-document.addEventListener('keyup', function(e) {
-  var keyName = e.key;
-  switch (keyName) {
-    case 'Escape':
-      close();
-      break;
-    case 'ArrowRight':
-      next();
-      break;
-    case 'ArrowLeft':
-      prev();
-      break;
-    default:
-      return;
-  }
-  e.preventDefault();
-}, true)
 
-for (i = 0; i < thumbnails.length; i++) {
-  var iThumb = thumbnails[i];
-  thumbnails[i].addEventListener('click', (e) => {
-    var src = e.target.getAttribute('src'); // capture src attr of thumbnail
-    var newSrc = src.replace('thumbnails/', '') // change src attr to full size image
-    var imageTitle = iThumb.children[0].getAttribute('data-title'); // capture title attr
-    
-    lightBox.classList.toggle('inactive'); // show light box
-    title.innerHTML = imageTitle; // set title text
-    imgContainer.appendChild(img).setAttribute('src', newSrc); // append image
-    imgContainer.appendChild(title).setAttribute('class', 'title'); // append title with css class
-  });
-}

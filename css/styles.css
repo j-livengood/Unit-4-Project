@@ -171,41 +171,46 @@ body {
 
 /* ----- Media Queries ----- */
 
-@media screen and (orientation: landscape) {
+@media (min-width: 600px) and (orientation: landscape) {
   
-  @media (min-width: 600px) {
-    #gallery-content {
-      width: 600px;
-      text-align: center;
-    }
-    
-    .thumbnail {
-      margin: 10px;
-    }
-    
-    .imageContainer {
-      width: 400px;
-    }
+  #mainSearch {
+    width: 350px;
+  }
+  
+  #gallery-content {
+    width: 600px;
+    text-align: center;
+  }
 
-    .next {
-      height: 254px;
-      line-height: 254px;
-    }
+  .thumbnail {
+    margin: 10px;
+  }
 
-    .prev {
-      height: 254px;
-      line-height: 254px;
-    }
-    
+  .imageContainer {
+    width: 400px;
+  }
+
+  .next {
+    height: 254px;
+    line-height: 254px;
+  }
+
+  .prev {
+    height: 254px;
+    line-height: 254px;
   }
   
   .title {
     color: white;
   }
-  
 }
 
+
 @media (min-width: 768px) {
+  
+  #mainSearch {
+    width: 350px;
+  }
   
   #gallery-content {
     width: 600px;
