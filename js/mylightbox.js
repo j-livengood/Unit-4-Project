@@ -43,7 +43,12 @@ var imgCaption = [
     2. show search bar if javascript is enabled
 */
 for (var i = 0; i < anchors.length; i++){anchors[i].setAttribute('onclick', 'return false');}
+
 search.classList.toggle('inactive');
+
+
+
+// EVENT LISTENERS
 
 for (i = 0; i < thumbnails.length; i++) {
   var iThumb = thumbnails[i];
@@ -71,6 +76,10 @@ document.addEventListener('keyup', function(e) {
   }
   e.preventDefault();
 }, true);
+
+
+
+// FUNCTIONS
 
 function openLightBox(e) {
   var src = e.target.getAttribute('src'); // capture src attr of thumbnail
@@ -110,5 +119,3 @@ function prev() {
   img.setAttribute('src', prevImage);
   title.innerHTML = prevTitle;
 }
-
-
