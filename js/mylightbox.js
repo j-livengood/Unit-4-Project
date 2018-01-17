@@ -37,6 +37,8 @@ var imgCaption = [
   "I walked through this meadow of bluebells and got a good view of the snow on the mountain before the fog came in."
 ];
 
+
+
 /*
   for unobtrusive javascript --
     1. disable all anchor tags to prevent naviagating away
@@ -46,13 +48,12 @@ for (var i = 0; i < anchors.length; i++){anchors[i].setAttribute('onclick', 'ret
 
 search.classList.toggle('inactive');
 
-var iThumb;
+
 
 // EVENT LISTENERS
 
 for (i = 0; i < thumbnails.length; i++) {
-  iThumb = thumbnails[i];
-  iThumb.addEventListener('click', openLightBox, false);
+  thumbnails[i].addEventListener('click', openLightBox, false);
 }
 
 nextButton.addEventListener('click', next, false);
